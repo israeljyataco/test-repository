@@ -1,0 +1,27 @@
+SAC Panama:
+1. Eliminar AutoMapper de Customer Controller, más las clases partials. Ya la CustomerData fue actualizada.
+2. Revisar todos los endpoints para ver cual funciona haciendo una lista, y estar atentos de lo que avisen los chicos en caso tal que no funcione uno. Tomar como endpoints principales para la revisión los de Grilla, Nuevo y Editar.
+ 
+SAC GT:
+Lo que diseñé estuvo mal hecho. Sólo pensé en el formato de XML, dejando por fuera las demás extensiones. 
+Consejo: Separar la Idea del Como. La Idea tiene que ser extendida a todos los formatos posibles y ser portable.
+
+Todos los cambios realizados por Gonzalo, están en el Branch Development.
+
+A Nivel de Base de Datos el Nuevo Proyecto contará con las siguientes Tablas de Trazabilidad:
+BanguatProcesses, BanguatRequests (Padre), BanguatRequestDC, BanguatRequestLogs (Monitoreo) y BanguatRequestJobs. Esta última tabla registra los Jobs que se gatillen desde la API.
+El Campo RequestID es el campo clave para la trazabilidad en todas estas tablas.
+
+En la .dll SACGT.DataAccess instalada en el proyecto está contenido el Modelo de Base de Datos.
+
+Gonzalo me explicó que se pueda usar Microsoft.Entity.Framework.Tools para hacer migraciones. Esta migración consiste en llevar el código SQL de un CREATE TABLE a Código fuente de C#.
+
+08/10/2025
+----------
+
+1. Se habló como hacer el manifiesto en LightSpeed, tanto en Snapshot como en Release.
+2. Se desplegaron los pipelines de sac-pa-api-lse-release y sac-pa-web-lse-release en Harness para pasar a UAT y Norma pueda certificar. Se tienen que hacer Pull Requests tanto del pipeline
+   de la Api como de la Web, del Branch development a main. *Si una aprobación caduca volver a deployar desde Harness. No es necesario realizar un nuevo build.
+3. Se intentó agregar infraestructura para el proyecto utilities, pero a través de una Api nos enteramos que los clústers que estamos usando en los proyectos SAC se encuentran 
+   en estado "Closed". Que significa que ya no se admiten nuevos proyectos en esos clústers.
+4. Se están llevando a cabo migraciones de repositorios de BitBucket a GitHub. Ver herramienta online de Citi para hacer la migración.
